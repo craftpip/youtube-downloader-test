@@ -11,9 +11,13 @@
 
 import json
 import sys
+from time import sleep
 from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
 import urllib.request
 
@@ -144,7 +148,15 @@ def download_youtube(youtubeId):
     yt.download(['https://www.youtube.com/watch?v=' + str(youtubeId)])
 
 
+def loop():
+    sleep(2)
+    loop()
+
+
 def init_function():
+    driver = webdriver.Chrome(executable_path=r'D:\xampp7.3\htdocs\youtube-downloader-test\chromedriver.exe')
+    driver.get("http://www.python.org")
+
     print('Searching for ' + str(search_term))
     video = search_youtube2(search_term)
     print('Found first result on youtube, id is ' + str(video['title']))
